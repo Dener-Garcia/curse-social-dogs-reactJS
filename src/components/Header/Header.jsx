@@ -6,11 +6,13 @@ const Header = () => {
   return(
     <>
     <header className={styles.header}>
-      <nav className='container'>
+      <nav className={styles.nav}>
         <Link to="/">
         <img src={dogs} alt='Logo social dogs, um icone de um cachorro sorrindo' />
         </Link>
-        <Link to="/login">Login / Criar</Link>
+        <Link className={styles.login} to="/login">
+          Login / Criar
+        </Link>
       </nav>
     </header>
     </>
