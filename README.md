@@ -2,4 +2,18 @@
 
 Para criar uma rota nestest ou seja dentro de uma rota tenho outra rota
 
+para criar rotas que tem sub rotas temos sempre que lembrar de por o /*
+> <Route path="/login/*" element={ <Login /> } />
+
+Agora dentro do componente que desejamos criar as rotas nested vamos configuarar o routes, todas as rotas abaixou são /login/NomeComponente
+
+``` javascript
+  <Routes>
+      <Route path="/" element={<LoginForm />} />
+      <Route path="criar" element={<LoginCreate />} />
+      <Route path="perdeu" element={<LoginPasswordLost />} />
+      <Route path="reset" element={<LoginPasswordReset />} />
+  </Routes>
+```
+
 video 07 02:24

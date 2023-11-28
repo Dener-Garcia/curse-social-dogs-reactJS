@@ -1,7 +1,7 @@
 const LoginCreate = () => {
   return(
     <>
-    sou login create
+     sou login create
     </>
   )
 }
