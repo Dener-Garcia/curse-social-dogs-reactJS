@@ -1,6 +1,16 @@
 :root{
   --type-first: "Inter", sans-serif;
   --type-second: 'Spectral', Georgia;
+
+  --color-accent: #fb1;
+
+  --color-secundary: #764701;
+  --color-tertiary: #fea;
+
+  --color-neutral-01: #fff;
+  --color-neutral-01: #eee;
+
+  --color-feedback-error: #f46;
 }
 
 * {

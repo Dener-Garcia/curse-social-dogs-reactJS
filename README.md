@@ -16,4 +16,4 @@ Agora dentro do componente que desejamos criar as rotas nested vamos configuarar
   </Routes>
 ```
 
-video 07 02:24
+video 08
