@@ -1,7 +1,8 @@
 import React from 'react'
 import styles from './input.module.css'
 
-const Input = ({label, textLabel, type, name, value}) => {
+const Input = ({label, textLabel, type, name, value, onChangeFc, error, onBlurFc}) => {
+	console.log(value)
 	return(
 		<div className={styles.wrapper}>
 			<label className={styles.label} htmlFor={label}>{textLabel}</label>
@@ -10,8 +11,10 @@ const Input = ({label, textLabel, type, name, value}) => {
 				id={name}
 				name={name}
 				value={value}
+				onChange={onChangeFc}
+				onBlur={onBlurFc}
 			/>
-			<span className={styles.error}>Erro</span>
+			{error && <span className={styles.error}>{error}</span>}
 		</div>
 	)
 }
