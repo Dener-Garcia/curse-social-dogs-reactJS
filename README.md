@@ -15,5 +15,3 @@ Agora dentro do componente que desejamos criar as rotas nested vamos configuarar
       <Route path="reset" element={<LoginPasswordReset />} />
   </Routes>
 ```
-
-video 08
