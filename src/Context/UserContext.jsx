@@ -1,31 +1,37 @@
 import React, { useEffect, useState } from 'react'
 import { createContext } from 'react'
 import { TOKEN_POST, TOKEN_VALIDATE_POST, USER_GET } from '../Api/api'
-import { getLocal, setLocal } from '../Utils/localStorage'
+import { getLocal, removeLocal, setLocal } from '../Utils/localStorage'
+import { useNavigate } from 'react-router-dom'
 
 export const UserContext = createContext()
  
 export const UserStorage = ({children}) => {
 
-	useEffect(() => {
+	const navigate = useNavigate()
+
+	useEffect(() => { // verifica se tem token local storage, se eh valido e ja loga o usuario
 		async function autoLogin(){
 			const token = getLocal('token')
 			if (token) {
 				try {
+					setError(null)
+					setLoading(true)
 					const {url, options} = TOKEN_VALIDATE_POST(token)
 					const res =  await fetch(url, options)
 					if(!res.ok) throw new Error('Token Invalido') // ja joga pro catch
-					const response = await res.json()
+					await getUser(token)
 				} catch (error) {
 					console.log('Cod erro', error)
+					userLogOut()
 				} finally{
-          
+					setLoading(false)
 				}
 
 			}
 		}
 		autoLogin()
-	}, [])
+	}, []) // toda funcao fora do useEffect deve ser usada na dependencia do mesmo
 
 
 	const [data, setData] = useState(null)
@@ -43,12 +49,38 @@ export const UserStorage = ({children}) => {
 	}
 
 	async function userLogin(username, password) {
-		const {url, options} = TOKEN_POST({username, password})
-		const tokenRes = await fetch(url, options)
-		const {token} = await tokenRes.json()
-		setLocal('token', token)
-		getUser(token)
-		console.log(tokenRes, 'userLoginContext')
+		try{
+			setError(null)
+			setLoading(true)
+
+
+
+			const {url, options} = TOKEN_POST({username, password})
+			const tokenRes = await fetch(url, options)
+			if(!tokenRes.ok) throw new Error(`Erro de Login, usuário inválido: ${tokenRes.statusText}`)
+			const {token} = await tokenRes.json()
+			setLocal('token', token)
+			await getUser(token)
+			navigate('/conta')
+		}
+		
+		catch (err){
+			setError(err.message)
+			setLogin(false)
+		}
+		finally{
+			setLoading(false)
+		}
+	}
+
+	async function userLogOut() {
+		setData(null)
+		setError(null)
+		setLoading(false)
+		setLogin(false)
+		removeLocal('token')
+		navigate('/login')
+		console.log('usuario deslogado')
 	}
 
   
@@ -61,8 +93,10 @@ export const UserStorage = ({children}) => {
 		setLoading,
 		error,
 		setError,
+
 		getUser,
 		userLogin,
+		userLogOut,
 	}
   
 	return(

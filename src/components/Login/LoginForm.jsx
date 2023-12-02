@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
 import Input from '../Forms/Input'
 import Button from '../Forms/Button'
@@ -10,7 +10,7 @@ const LoginForm = () => {
 	const userName = useForm() // custom hook
 	const password = useForm()
 
-	const {userLogin} = useContext(UserContext)
+	const {userLogin, error, loading} = useContext(UserContext)
 
 
 	const handleSubmit = async (e) =>{
@@ -39,7 +39,12 @@ const LoginForm = () => {
 						label={'password'} 
 						name={'password'} 
 						{...password} />
-					<Button type={'submit'} labelButton={'Entrar'} />
+
+					{
+						loading ? <Button disabled labelButton={'Fazendo Login...'} /> : <Button type={'submit'} labelButton={'Entrar'} />
+					}
+					{error && <p>{error}</p>}
+					
 				</form>
 
 				<Link to="/login/criar">Cadastros</Link>
