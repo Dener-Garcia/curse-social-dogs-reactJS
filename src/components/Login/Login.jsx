@@ -5,6 +5,7 @@ import LoginPasswordLost from './LoginPasswordLost'
 import LoginPasswordReset from './LoginPasswordReset'
 import LoginCreate from './LoginCreate'
 import { UserContext } from '../../Context/UserContext'
+import styles from './login.module.css'
 
 const Login = () => {
 
@@ -15,8 +16,9 @@ const Login = () => {
 	}
 
 	return(
-		<>
-			<div>
+
+		<section className={styles.login}>
+			<div className={styles.forms}>
 				<Routes>
 					<Route path="/" element={<LoginForm />} />
 					<Route path="criar" element={<LoginCreate />} />
@@ -24,7 +26,8 @@ const Login = () => {
 					<Route path="reset" element={<LoginPasswordReset />} />
 				</Routes>
 			</div>
-		</>
+		</section>
+
 	)
 }
 

@@ -1,16 +1,23 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;300;400;500;700&family=Spectral:wght@700&display=swap');
+
 :root{
   --type-first: "Inter", sans-serif;
-  --type-second: 'Spectral', Georgia;
+  --type-second: 'Spectral', georgia;
 
   --color-accent: #fb1;
 
   --color-secundary: #764701;
   --color-tertiary: #fea;
 
-  --color-neutral-01: #fff;
+  --color-neutral-0: #fff;
   --color-neutral-01: #eee;
+  --color-neutral-03: #333;
+
+
+  --color-neutral-06: #666;
 
   --color-feedback-error: #f46;
+  --color-feedback-status: #3a8be7;
 }
 
 * {
@@ -31,6 +38,7 @@ ul, li{
 
 a{
   text-decoration: none;
+  color: var(--color-neutral-03);
 }
 
 img{

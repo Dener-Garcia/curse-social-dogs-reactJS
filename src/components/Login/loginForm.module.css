@@ -1,0 +1,25 @@
+form{
+  margin-bottom: 2rem;
+}
+
+.userAdmin{
+  display: flex;
+  flex-direction: column;
+}
+
+.subTitle{
+  display: inline-block;
+  color: var(--color-neutral-06);
+  padding: 0.5rem 0;
+  transition: 0.2s;
+  font-weight: 500;
+}
+
+.signUp p{
+  font-weight: 700;
+}
+
+.subTitle:hover,
+.subTitle:focus{
+  color: var(--color-feedback-status);
+}

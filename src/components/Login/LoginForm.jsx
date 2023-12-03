@@ -4,6 +4,8 @@ import Input from '../Forms/Input'
 import Button from '../Forms/Button'
 import useForm from '../../CustomHooks/useForm'
 import { UserContext } from '../../Context/UserContext'
+import Error from '../Helper/Error'
+import styles from './loginForm.module.css'
 
 const LoginForm = () => {
 
@@ -22,11 +24,11 @@ const LoginForm = () => {
 	}
 	return(
 		<>
-			<section>
+			<section className='anime-left'>
 
-				<h1>Login</h1>
+				<h1 className='title'>Login</h1>
 
-				<form action="" onSubmit={handleSubmit}>
+				<form className={styles.form} onSubmit={handleSubmit}>
 					<Input textLabel={'Usuário'} 
 						type={'text'} 
 						label={'user'} 
@@ -39,16 +41,30 @@ const LoginForm = () => {
 						label={'password'} 
 						name={'password'} 
 						{...password} />
-
+					<Error error={error} />
 					{
-						loading ? <Button disabled labelButton={'Fazendo Login...'} /> : <Button type={'submit'} labelButton={'Entrar'} />
+						loading ? <Button disabled labelButton={'Fazendo Login...'} /> : <Button type={'submit'} labelButton={'Entrar'} /> 
 					}
-					{error && <p>{error}</p>}
-					
+
+				
+
+					<Link className={styles.missPassword} 
+						to="/login/perdeu">
+						<span className={styles.subTitle}>	
+					Recuperar senha
+						</span>
+					</Link>
 				</form>
 
-				<Link to="/login/criar">Cadastros</Link>
-
+				<div className={styles.userAdmin}>
+					<Link className={styles.signUp} 
+						to="/login/criar">
+						<p>Ainda não tem conta?</p>
+						<span className={styles.subTitle}>
+					Criar conta
+						</span>
+					</Link>
+				</div>
 			</section>
 		</>
 	)
