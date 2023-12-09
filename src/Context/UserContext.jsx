@@ -27,7 +27,6 @@ export const UserStorage = ({children}) => {
 				} finally{
 					setLoading(false)
 				}
-
 			}
 		}
 		autoLogin()
@@ -52,9 +51,6 @@ export const UserStorage = ({children}) => {
 		try{
 			setError(null)
 			setLoading(true)
-
-
-
 			const {url, options} = TOKEN_POST({username, password})
 			const tokenRes = await fetch(url, options)
 			if(!tokenRes.ok) throw new Error(`Erro de Login, usuário inválido: ${tokenRes.statusText}`)
@@ -93,7 +89,6 @@ export const UserStorage = ({children}) => {
 		setLoading,
 		error,
 		setError,
-
 		getUser,
 		userLogin,
 		userLogOut,

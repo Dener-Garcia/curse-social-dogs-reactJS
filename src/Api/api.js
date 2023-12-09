@@ -38,7 +38,8 @@ export const USER_GET = (token) => {
 	}
 }
 
-export const USER_POST = (body) => {
+export const USER_POST = (keys) => {
+	const bodyString = JSON.stringify(keys)
 	return{
 		url: API_URL + '/api/user',
 		options: {
@@ -46,7 +47,7 @@ export const USER_POST = (body) => {
 			headers: {
 				'Content-Type': 'application/json',
 			},
-			body: JSON.stringify(body)
+			body: bodyString
 		},
 	}
 }

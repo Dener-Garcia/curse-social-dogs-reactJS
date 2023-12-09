@@ -4,16 +4,20 @@ import Button from '../Forms/Button'
 import useForm from '../../CustomHooks/useForm'
 import { USER_POST } from '../../Api/api'
 import { UserContext } from '../../Context/UserContext'
+import useFetch from '../../CustomHooks/useFetch'
+import Error from '../Helper/Error'
 
 
 const LoginCreate = () => {
 
 	const {userLogin} = useContext(UserContext)
+	const { loading, error, requestMyApi } = useFetch()
 
 	const username = useForm()
 	const email = useForm('email')
 	const password = useForm()
 
+	console.log(requestMyApi, 'meu use efetch')
 
 	async function handleSubmit(e) {
 		e.preventDefault()
@@ -22,7 +26,7 @@ const LoginCreate = () => {
 			email: email.value,
 			password: password.value
 		})
-		const response = await fetch(url, options)
+		const {response} = await requestMyApi(url, options)
 		if (response.ok) userLogin(username.value, password.value)
 	}
 
@@ -48,8 +52,8 @@ const LoginCreate = () => {
 					name={'username'} 
 					textLabel={'Crie uma senha'} 
 					{...password} />
-          
-				<Button labelButton={'Cadastrar'}/>
+				{loading ? <Button disabled labelButton={'Criando sua conta'}/> : <Button labelButton={'Cadastrar'}/>}
+				<Error error={error} />
 			</form>
 		</section>
 	)
