@@ -15,3 +15,6 @@ Agora dentro do componente que desejamos criar as rotas nested vamos configuarar
       <Route path="reset" element={<LoginPasswordReset />} />
   </Routes>
 ```
+## Rota protegida com react router dom
+
+Basta verificar se if do login, setLogin em userContext esta ativo
